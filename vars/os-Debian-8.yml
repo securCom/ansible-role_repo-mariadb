@@ -1,0 +1,12 @@
+---
+
+mariadb_repo_supported: true
+mariadb_repo_dep:
+  - software-properties-common
+  - gnupg
+
+mariadb_repo_key: '0xcbcb082a1bb943db'
+mariadb_repo_arch:
+  - amd64
+  - i386
+  - ppc64el

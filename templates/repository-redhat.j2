@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+
+# http://downloads.mariadb.org/mariadb/repositories/
+
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/{{ mariadb_repo_version }}/{{mariadb_repo_map_os[ansible_distribution]}}{{ansible_distribution_major_version}}-{{ mariadb_repo_map_arch[ansible_architecture]|default(ansible_architecture)}}
+gpgkey={{ mariadb_repo_key }}
+gpgcheck=1

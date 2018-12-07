@@ -1,0 +1,6 @@
+{{ ansible_managed | comment }}
+
+# http://downloads.mariadb.org/mariadb/repositories/
+
+deb [arch={{ mariadb_repo_arch|join(',') }}] {{ mariadb_repo_debian_mirror }}/{{ mariadb_repo_version }}/{{mariadb_repo_map_os[ansible_distribution]}} {{ ansible_distribution_release }} main
+#deb-src {{ mariadb_repo_debian_mirror }}/{{ mariadb_repo_version }}/{{mariadb_repo_map_os[ansible_distribution]}} {{ ansible_distribution_release }} main

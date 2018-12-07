@@ -1,0 +1,37 @@
+---
+- name: "installing mariadb required packages"
+  apt:
+    name: "{{ package }}"
+    state: present
+  loop: "{{ mariadb_repo_dep }}"
+  loop_control:
+    loop_var: package
+  when: mariadb_repo_state
+
+- name: "importing mariadb gpg key"
+  apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    state: present
+    keyring: /etc/apt/trusted.gpg.d/mariadb.gpg
+    id: "{{ mariadb_repo_key }}"
+
+- name: "add mariadb repository"
+  template:
+    src: "repository-debian.j2"
+    dest: /etc/apt/sources.list.d/mariadb.list
+    owner: root
+    group: root
+    mode: 0644
+  when: mariadb_repo_state
+  register: mariadb_repo_changed
+
+- name: "update debain repository cache"
+  apt:
+    update_cache: true
+  when: mariadb_repo_changed.changed
+
+- name: "remove mariadb repository"
+  file:
+    path: /etc/apt/sources.list.d/mariadb.list
+    state: absent
+  when: not mariadb_repo_state

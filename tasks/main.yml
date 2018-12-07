@@ -1,0 +1,23 @@
+---
+
+- name: "os specific variables"
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "os-{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+    - "os-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "os-default.yml"
+  tags:
+    - always
+
+
+- name: include repository tasks
+  import_tasks: repository-redhat.yml
+  when: mariadb_repo_supported and ansible_distribution in ('CentOS', 'RedHat')
+  tags:
+    - mariadb
+
+- name: include repository tasks
+  import_tasks: repository-debian.yml
+  when: mariadb_repo_supported and ansible_distribution in ('Debian', 'Ubuntu')
+  tags:
+    - mariadb
