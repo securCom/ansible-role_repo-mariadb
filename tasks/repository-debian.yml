@@ -8,12 +8,19 @@
     loop_var: package
   when: mariadb_repo_state
 
+# - name: "importing mariadb gpg key"
+#   command: apt-key --keyring /etc/apt/trusted.gpg.d/mariadb.gpg adv --no-tty --keyserver hkp://keyserver.ubuntu.com:80 --recv {{ mariadb_repo_key }}
+#   changed_when: False
+
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=913614
+# https://github.com/ansible/ansible/pull/48888
 - name: "importing mariadb gpg key"
   apt_key:
-    keyserver: hkp://keyserver.ubuntu.com:80
+    keyserver: hkp://keyserver.ubuntu.com
     state: present
     keyring: /etc/apt/trusted.gpg.d/mariadb.gpg
     id: "{{ mariadb_repo_key }}"
+  ignore_errors: true
 
 - name: "add mariadb repository"
   template:
@@ -29,6 +36,7 @@
   apt:
     update_cache: true
   when: mariadb_repo_changed.changed
+  ignore_errors: true
 
 - name: "remove mariadb repository"
   file:
