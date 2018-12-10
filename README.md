@@ -1,3 +1,7 @@
+[![Build Status](https://www.travis-ci.org/securCom/ansible-role_repo-mariadb.svg?branch=master)](https://www.travis-ci.org/securCom/ansible-role_repo-mariadb)
+[![GitHub release](https://img.shields.io/github/release/securCom/ansible-role_repo-mariadb.svg)](https://github.com/securCom/ansible-role_repo-mariadb)
+
+
 # Repo: MariaDB
 
 Manage MariaDB  repositories.
