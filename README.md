@@ -4,7 +4,7 @@ Manage MariaDB  repositories.
 
 # Requirements
 
-Forr supported systems  see https://downloads.mariadb.org/mariadb/repositories/. If yhour system is not supported,
+For supported systems  see https://downloads.mariadb.org/mariadb/repositories/. If yhour system is not supported,
 the role tasks will be skipped.
 
 For supported system by this role, see the `vars/os-<system>` files.
