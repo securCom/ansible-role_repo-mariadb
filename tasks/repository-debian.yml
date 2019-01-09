@@ -11,16 +11,16 @@
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=913614
 # https://github.com/ansible/ansible/pull/48888
 - block:
-  - name: "importing mariadb gpg key"
-    apt_key:
-      keyserver: hkp://keyserver.ubuntu.com
-      state: present
-      keyring: /etc/apt/trusted.gpg.d/mariadb.gpg
-      id: "{{ mariadb_repo_key }}"
+    - name: "importing mariadb gpg key"
+      apt_key:
+        keyserver: hkp://keyserver.ubuntu.com
+        state: present
+        keyring: /etc/apt/trusted.gpg.d/mariadb.gpg
+        id: "{{ mariadb_repo_key }}"
   rescue:
-  - name: "importing mariadb gpg key"
-    command: apt-key --keyring /etc/apt/trusted.gpg.d/mariadb.gpg adv --no-tty --keyserver hkp://keyserver.ubuntu.com:80 --recv {{ mariadb_repo_key }}
-    changed_when: False
+    - name: "importing mariadb gpg key"
+      command: apt-key --keyring /etc/apt/trusted.gpg.d/mariadb.gpg adv --no-tty --keyserver hkp://keyserver.ubuntu.com:80 --recv {{ mariadb_repo_key }}
+      changed_when: false
 
 - name: "add mariadb repository"
   template:
