@@ -32,7 +32,7 @@
   when: mariadb_repo_state
   register: mariadb_repo_changed
 
-- name: "update debain repository cache"
+- name: "update debain repository cache"  # noqa 503
   apt:
     update_cache: true
   when: mariadb_repo_changed.changed
