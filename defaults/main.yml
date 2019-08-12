@@ -1,5 +1,5 @@
 ---
 
-mariadb_repo_version: '10.3'
+mariadb_repo_version: '10.4'
 mariadb_repo_state: true
 mariadb_repo_debian_mirror: http://mirror.klaus-uwe.me/mariadb/repo
