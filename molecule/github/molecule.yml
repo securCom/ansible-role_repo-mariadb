@@ -6,8 +6,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: centos-7
-    image: centos:7
+  - name: centos-8
+    image: centos:8
   - name: debian-10
     image: debian:10
   - name: ubuntu-1804
